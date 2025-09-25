@@ -7,9 +7,16 @@ Accurate precipitation predictions over the Great Lakes basin have critical glob
 Use this repository to replicate our analysis:
 
 ## Raw Data:
-Contains citations of all data set used
+Data files used in this repository can be directly accessed at: 
+Meem, T., Meem, T. J., Meem, T. J., Carter, E., Shaw, S., & Bhattacharya, T. (2025). Accuracy and realism of CMIP6 candidate models in capturing dry, moist, and extreme precipitation anomalies in the Laurentian Great Lakes. Zenodo. https://doi.org/10.5281/zenodo.17034063
+
+## processed_data:
+Note to Meem: create as subfolder and save processed data objects here so that folks don't always have to read in your raw data. Depending on the size of your datasets, this might need to also go in the Zenodo repository, in which case make sure you are reading in these processed datasets from the zenodo url in code below. 
+
+Example R code: nc <- nc_open("https://dapds00.nci.org.au/thredds/dodsC/uc0/Test_pixel_count.nc")
 
 ## Code:
+Note to Meem: update all lines of code where you read in data to link directly to a URL in Zenodo repository or to the corresponding processed data folder in github repository. Assume the repository itself is the working directory, so an example file path would be "./processed_data/filename.txt"
 ### Function
 1.	PI.R – Calculates CDD,CWD,TP,EPD,MDP and SAI (Standard Precipitation Anomaly)
 2.	ivss.R – Calculates the IVSS
@@ -21,6 +28,7 @@ Contains citations of all data set used
 4.	EC_extraction.R,mpi_extraction.R,mri_extraction.R,ac_extraction.R,miroc_extraction.R – Reads from netcdf files cited in Raw Data to calculate average precipitation for historical,ssp370 and ssp585 scenario and calculate the precipitation index functions using PI.R from function
 
 ### Figures
+Note to Meem: make sure these figures correspond to figures 
 1.	Figure1.R reads the outputs from Avg_Precip.R ,aggregates yearly precipitation and generate figure1 
 2.	Figure2.R- reads the outputs from Avg_Precip.R, calculates ensemble mean and generate figure2
 3.	Figure3.R - reads the outputs from Avg_Precip.R ,aggregates monthly precipitation, performs hypothesis testing and generate figure3
