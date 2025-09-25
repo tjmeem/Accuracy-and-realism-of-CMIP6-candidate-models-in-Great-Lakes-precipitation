@@ -16,7 +16,7 @@ Note to Meem: create as subfolder and save processed data objects here so that f
 Example R code: nc <- nc_open("https://dapds00.nci.org.au/thredds/dodsC/uc0/Test_pixel_count.nc")
 
 ## Code:
-Note to Meem: update all lines of code where you read in data to link directly to a URL in Zenodo repository or to the corresponding processed data folder in github repository. Assume the repository itself is the working directory, so an example file path would be "./processed_data/filename.txt"
+Note to Meem: update all lines of code where you read in data to link directly to a URL in Zenodo repository or to the corresponding processed data folder in github repository. Most of these filepaths direct to the downloads folder of your PC.  Assume the repository itself is the working directory, so an example file path would be "./processed_data/filename.txt"
 ### Function
 1.	PI.R – Calculates CDD,CWD,TP,EPD,MDP and SAI (Standard Precipitation Anomaly)
 2.	ivss.R – Calculates the IVSS
@@ -28,7 +28,7 @@ Note to Meem: update all lines of code where you read in data to link directly t
 4.	EC_extraction.R,mpi_extraction.R,mri_extraction.R,ac_extraction.R,miroc_extraction.R – Reads from netcdf files cited in Raw Data to calculate average precipitation for historical,ssp370 and ssp585 scenario and calculate the precipitation index functions using PI.R from function
 
 ### Figures
-Note to Meem: make sure these figures correspond to figures 
+
 1.	Figure1.R reads the outputs from Avg_Precip.R ,aggregates yearly precipitation and generate figure1 
 2.	Figure2.R- reads the outputs from Avg_Precip.R, calculates ensemble mean and generate figure2
 3.	Figure3.R - reads the outputs from Avg_Precip.R ,aggregates monthly precipitation, performs hypothesis testing and generate figure3
