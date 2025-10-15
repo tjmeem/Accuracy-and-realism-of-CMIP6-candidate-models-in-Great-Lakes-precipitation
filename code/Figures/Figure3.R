@@ -1,4 +1,6 @@
-
+tmp <- tempfile(fileext = ".zip")
+download.file("https://zenodo.org/record/17316002/files/fig%201,2,3.zip?download=1", tmp, mode="wb")
+unzip(tmp, exdir = "./processed_data")
 mean_updated <- read_csv("E:/MW_ClimateChange/Data for frontiers paper/mean_updated.csv",col_types = cols(Dates = col_date(format = "%m/%d/%Y")))
 
 mean_updated <- read_csv("E:/MW_ClimateChange/Data for frontiers paper/mean_updated.csv",col_types = cols(Dates = col_date(format = "%m/%d/%Y")))
@@ -122,6 +124,7 @@ ggplot(data = mon_melt_updated,aes(x= month)) +
         axis.line = element_line(),
         strip.background = element_rect(fill='white'))
   
+
 
 
 
