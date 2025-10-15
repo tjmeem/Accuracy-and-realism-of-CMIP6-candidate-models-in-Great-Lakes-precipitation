@@ -1,4 +1,8 @@
-setwd("E:/MW_ClimateChange/Data for frontiers paper")
+#setwd("E:/MW_ClimateChange/Data for frontiers paper")
+tmp <- tempfile(fileext = ".zip")
+download.file("https://zenodo.org/record/17316002/files/fig%201,2,3.zip?download=1", tmp, mode="wb")
+unzip(tmp, exdir = "./processed_data")
+
 library(dplyr)
 library(ggplot2)
 library(reshape2)
@@ -98,6 +102,7 @@ panel
 
 setwd("E:/MW_ClimateChange/Data for frontiers paper/Draft/Edits")
 ggsave("yearly_overestimation.jpeg",width = 12, height=8)
+
 
 
 
