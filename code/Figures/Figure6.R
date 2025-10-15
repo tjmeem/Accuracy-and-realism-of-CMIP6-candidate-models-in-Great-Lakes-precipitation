@@ -1,4 +1,9 @@
-setwd("C:/Users/tamee/Downloads/new_runs/cpc")
+tmp <- tempfile(fileext = ".zip")
+download.file("https://zenodo.org/record/17316002/files/Figure6-10.zip?download=1",
+              tmp, mode = "wb")
+unzip(tmp, exdir = "./processed_data/Figure6_10")
+
+setwd("./cpc")
 cpc<- read.csv("cdd_s6_8.csv")
 cpc_avg<- (data.frame(apply(cpc[,1:5],1,mean)))
 colnames(cpc_avg)<- "CDD"
@@ -14,7 +19,7 @@ cpc_all<- rbind(cpc_avg,cpc_avg,cpc_avg,cpc_avg,cpc_avg)
 cpc_all$Model<- model
 cpc_all$Diff<- rep(0,180)
 #Access
-setwd("C:/Users/tamee/Downloads/new_runs/access/historical")
+setwd("./access/historical")
 access_hist<- read.csv("cdd_s6_8.csv")
 access_hist_avg<- (data.frame(apply(access_hist[,1:5],1,mean)))
 colnames(access_hist_avg)<- "CDD"
@@ -37,7 +42,7 @@ access_ssp370_avg$Diff<- (access_ssp370_avg$CDD -rep(hist_access$CDD,87))
 
 acess_fit_370<- lm(access_ssp370_avg$Diff ~ yr-1)
 access_slope_370<- acess_fit_370$coefficients[1]
-setwd("C:/Users/tamee/Downloads/new_runs/access/ssp585")
+setwd("./access/ssp585")
 access_ssp585<- read.csv("cdd_s6_8.csv")
 access_ssp585_avg<- (data.frame(apply(access_ssp585[,1:5],1,mean)))
 colnames(access_ssp585_avg)<- "CDD"
@@ -51,7 +56,7 @@ access_full<- rbind(access_hist_avg,access_ssp370_avg,access_ssp585_avg)
 access_full$Model<- rep("ACCESS",210) 
 
 #Ec_earth
-setwd("C:/Users/tamee/Downloads/new_runs/ec_earth/historical")
+setwd("./ec_earth/historical")
 ec_hist<- read.csv("cdd_s6_8.csv")
 ec_hist_avg<- data.frame(apply(ec_hist[,1:5],1,mean))
 colnames(ec_hist_avg)<- "CDD"
@@ -85,7 +90,7 @@ ec_full<- rbind(ec_hist_avg,ec_ssp370_avg,ec_ssp585_avg)
 ec_full$Model<- rep("EC_EARTH",210)
 
 #MIROC
-setwd("C:/Users/tamee/Downloads/new_runs/miroc/historical")
+setwd("./miroc/historical")
 miroc_hist<- read.csv("cdd_s6_8.csv")
 miroc_hist_avg<- data.frame(apply(miroc_hist[,1:5],1,mean))
 colnames(miroc_hist_avg)<- "CDD"
@@ -120,7 +125,7 @@ miroc_full<- rbind(miroc_hist_avg,miroc_ssp370_avg,miroc_ssp585_avg)
 miroc_full$Model <- rep("MIROC",210)
 
 #MPI
-setwd("C:/Users/tamee/Downloads/new_runs/MPI/historical")
+setwd("./MPI/historical")
 mpi_hist<- read.csv("cdd_s6_8.csv")
 mpi_hist_avg<- data.frame(apply(mpi_hist[,1:5],1,mean))
 colnames(mpi_hist_avg)<- "CDD"
@@ -154,7 +159,7 @@ mpi_full<- rbind(mpi_hist_avg,mpi_ssp370_avg,mpi_ssp585_avg)
 mpi_full$Model<- rep("MPI",210)
 
 #MRI
-setwd("C:/Users/tamee/Downloads/new_runs/MRI/historical")
+setwd(".MRI/historical")
 mri_hist<- read.csv("cdd_s6_8.csv")
 mri_hist_avg<- data.frame(apply(mri_hist[,1:5],1,mean))
 colnames(mri_hist_avg)<- "CDD"
@@ -162,7 +167,7 @@ mri_hist_avg$year<- seq(1979,2014,1)
 mri_hist_avg$Timeline<- rep("Historical",36)
 mri_hist_avg$Diff<- rep(0,36)
 intercept_mri<- rep(mean(mri_hist_avg$CDD),2)
-setwd("C:/Users/tamee/Downloads/new_runs/MRI/ssp370")
+setwd("./MRI/ssp370")
 mri_ssp370<- read.csv("CDD_s6_8.csv")
 mri_ssp370_avg<- data.frame(apply(mri_ssp370[,1:5],1,mean))
 colnames(mri_ssp370_avg)<- "CDD"
@@ -175,7 +180,7 @@ mri_ssp370_avg$year<- seq(2014,2100)
 mri_ssp370_avg$Diff<- (mri_ssp370_avg$CDD -rep(hist_mri$CDD,87))
 mri_fit_ssp370<- lm(mri_ssp370_avg$Diff ~ yr-1)
 mri_slope_370<- mri_fit_ssp370$coefficients[1]
-setwd("C:/Users/tamee/Downloads/new_runs/MRI/ssp585")
+setwd("./MRI/ssp585")
 mri_ssp585<- read.csv("CDD_s6_8.csv")
 mri_ssp585_avg<- data.frame(apply(mri_ssp585[,1:5],1,mean))
 colnames(mri_ssp585_avg)<- "CDD"
@@ -252,3 +257,4 @@ ggplot(data = cdd_all, aes(x = year, y = CDD)) +
         plot.title=element_text(size=16,face='bold'),legend.title = element_text(size = 16,face='bold'),legend.text = element_text(size=16,face='bold'))
 setwd("C:/Users/tamee/Downloads/new_runs")
 ggsave("cdd_detrend_slope_p_updated.jpeg",width = 12, height=8)
+
